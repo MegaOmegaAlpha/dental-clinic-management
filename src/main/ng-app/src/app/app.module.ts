@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppointmentListComponent } from './appointment/appointment-list/appointment-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { AddVisitComponent } from './visit/add-visit/add-visit.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -13,11 +14,12 @@ import { AddVisitComponent } from './visit/add-visit/add-visit.component';
     AppointmentListComponent,
     AddVisitComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

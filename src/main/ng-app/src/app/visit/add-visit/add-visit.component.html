@@ -1,6 +1,22 @@
 <p>add-visit works!</p>
 <form (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label></label>
+    <label>Фамилия</label>
+    <input type="text" value="{{appointment.patient.lastName}}" name="lastName" readonly>
+    <label>Имя</label>
+    <input type="text" value="{{appointment.patient.firstName}}" name="firstName" readonly>
+    <label>Жалоба</label>
+    <input type="text" [(ngModel)]="visit.complaint" name="complaint">
+    <label>Состояние</label>
+    <input type="text" [(ngModel)]="visit.status" name="status">
+    <label>Процедура</label>
+    <select [(ngModel)]="procedureId" name="procedure">
+      <option *ngFor="let procedure of procedures" value="{{procedure.id}}">{{procedure.name}}</option>
+    </select>
+    <label>Диагноз</label>
+    <select [(ngModel)]="diagnosisId" name="diagnosis">
+      <option *ngFor="let diagnosis of diagnosisArray" value="{{diagnosis.id}}">{{diagnosis.name}}</option>
+    </select>
+    <button type="submit">Завершить</button>
   </div>
 </form>

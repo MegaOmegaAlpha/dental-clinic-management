@@ -11,7 +11,8 @@ public class VisitDTO {
     private DentistDTO dentist;
     private PatientDTO patient;
     private DiagnosisDTO diagnosis;
-    private ProcedureDTO procedureDTO;
+    private ProcedureDTO procedure;
+    private AppointmentDTO appointment;
 
     public long getId() {
         return id;
@@ -65,11 +66,19 @@ public class VisitDTO {
         this.diagnosis = diagnosis;
     }
 
-    public ProcedureDTO getProcedureDTO() {
-        return procedureDTO;
+    public ProcedureDTO getProcedure() {
+        return procedure;
     }
 
-    public void setProcedureDTO(ProcedureDTO procedureDTO) {
-        this.procedureDTO = procedureDTO;
+    public void setProcedure(ProcedureDTO procedure) {
+        this.procedure = procedure;
+    }
+
+    public AppointmentDTO getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(AppointmentDTO appointment) {
+        this.appointment = appointment;
     }
 }

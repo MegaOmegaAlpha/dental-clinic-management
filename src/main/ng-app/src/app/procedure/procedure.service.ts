@@ -12,8 +12,8 @@ export class ProcedureService {
 
   constructor(private http: HttpClient) { }
 
-  public findAll(): Observable<Procedure> {
-    return this.http.get<Procedure>(`${this.url}`);
+  public getProcedures(): Observable<Procedure[]> {
+    return this.http.get<Procedure[]>(`${this.url}`);
   }
 
 }

@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {Patient} from "../../patient/patient";
-import {PatientService} from "../../patient/patient.service";
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Appointment} from "../../appointment/appointment";
 import {AppointmentService} from "../../appointment/appointment.service";
+import {Visit} from "../visit";
+import {Procedure} from "../../procedure/procedure";
+import {ProcedureService} from "../../procedure/procedure.service";
+import {Diagnosis} from "../../diagnosis/diagnosis";
+import {DiagnosisService} from "../../diagnosis/diagnosis.service";
+import {VisitService} from "../visit.service";
 
 @Component({
   selector: 'app-add-visit',
@@ -13,25 +17,70 @@ import {AppointmentService} from "../../appointment/appointment.service";
 export class AddVisitComponent implements OnInit {
 
   appointment: Appointment;
+  visit: Visit = new Visit();
+  procedures: Procedure[];
+  diagnosisArray: Diagnosis[];
+  procedureId: number;
+  diagnosisId: number;
 
   constructor(private appointmentService: AppointmentService,
+              private procedureService: ProcedureService,
+              private diagnosisService: DiagnosisService,
+              private visitService: VisitService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     let appointmentId = this.route.snapshot.paramMap.get("appointmentId");
     this.fillAppointment(appointmentId)
+    this.fillProcedures()
+    this.fillDiagnosisArray();
+  }
+
+  private fillProcedures(): void {
+    this.procedureService.getProcedures().subscribe(data => this.procedures = data);
+  }
+
+  private fillDiagnosisArray(): void {
+    this.diagnosisService.getDiagnosisAll().subscribe(data => this.diagnosisArray = data);
   }
 
   private fillAppointment(id: string): void {
-    this.appointmentService.getAppointment(id).subscribe(data => {
-      this.appointment = data;
-      console.log(this.appointment);
-    });
+    this.appointmentService.getAppointment(id).subscribe(data => this.appointment = data);
   }
 
   public onSubmit() {
+    this.visit.procedure = this.findProcedureById(this.procedureId);
+    this.visit.diagnosis = this.findDiagnosisById(this.diagnosisId);
+    this.visit.patient = this.appointment.patient;
+    this.visit.dentist = this.appointment.dentist;
+    this.visit.appointment = this.appointment;
+    console.log(this.visit);
+    this.saveVisit(this.visit);
+  }
+
+  private saveVisit(visit: Visit): void {
+    this.visitService.createVisit(visit).subscribe(
+      data => {
+        console.log(data);
+        //todo: navigation to appointment list
+      },
+      error => console.log(error)
+    );
 
   }
+
+  private findProcedureById(id: number): Procedure {
+    return this.procedures.filter(procedure => {
+      return procedure.id == id;
+    })[0];
+  }
+
+  private findDiagnosisById(id: number): Diagnosis {
+    return this.diagnosisArray.filter(diagnosis => {
+      return diagnosis.id == id;
+    })[0];
+  }
+
 
 }

@@ -18,8 +18,8 @@ public class VisitController {
     }
 
     @RequestMapping(value = "/visits", method = RequestMethod.POST)
-    public void createVisit(@RequestBody VisitDTO visitDTO) {
-        visitService.saveVisit(visitDTO);
+    public VisitDTO createVisit(@RequestBody VisitDTO visitDTO) {
+        return visitService.saveVisit(visitDTO);
     }
 
 }
