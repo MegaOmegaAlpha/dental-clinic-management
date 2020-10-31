@@ -1,7 +1,5 @@
 package com.vladimir.dentalclinic.dto;
 
-import com.vladimir.dentalclinic.model.Specialization;
-
 public class DentistDTO {
 
     private long id;

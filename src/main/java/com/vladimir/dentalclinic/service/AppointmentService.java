@@ -1,7 +1,6 @@
 package com.vladimir.dentalclinic.service;
 
 import com.vladimir.dentalclinic.dto.AppointmentDTO;
-import com.vladimir.dentalclinic.dto.DentistDTO;
 import com.vladimir.dentalclinic.dto.PatientDTO;
 import com.vladimir.dentalclinic.exceptions.NoSuchEntityException;
 import com.vladimir.dentalclinic.model.Appointment;
@@ -41,10 +40,7 @@ public class AppointmentService {
     }
 
     private AppointmentDTO convertEntityToDTO(Appointment entity) {
-        AppointmentDTO appointmentDTO = converter.convert(entity, AppointmentDTO.class);
-        appointmentDTO.setDentist(converter.convert(entity.getDentist(), DentistDTO.class));
-        appointmentDTO.setPatient(converter.convert(entity.getPatient(), PatientDTO.class));
-        return appointmentDTO;
+        return converter.convert(entity, AppointmentDTO.class);
     }
 
 }

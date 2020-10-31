@@ -1,9 +1,8 @@
 package com.vladimir.dentalclinic.dto;
 
-public class SpecializationDTO {
+public class ProcedureDTO {
 
     private long id;
-
     private String name;
 
     public long getId() {

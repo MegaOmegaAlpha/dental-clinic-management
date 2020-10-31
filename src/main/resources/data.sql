@@ -1,4 +1,4 @@
-insert into user_granted values ('main dentist', '$2a$10$.64YvulmLPDyMalcrWu/E.2RFDEWcFqTHwqxBA1.L/GYPZUCYCZiS')
+insert into user_granted values ('main dentist', '$2a$10$.64YvulmLPDyMalcrWu/E.2RFDEWcFqTHwqxBA1.L/GYPZUCYCZiS');
 
 insert into specialization(name) values ('Терапевт'), ('Ортодонт'), ('Хирург'), ('Ортопед');
 

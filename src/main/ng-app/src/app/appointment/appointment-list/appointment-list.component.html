@@ -1,0 +1,20 @@
+<p>appointment-list works!</p>
+<table>
+  <thead>
+  <tr>
+    <th>Время записи</th>
+    <th>Пациент</th>
+    <th>Телефон</th>
+    <th>Действие</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let appointment of appointments">
+    <td>{{appointment.appointmentTime}}</td>
+    <td>{{appointment.patient.lastName + " " + appointment.patient.firstName}}</td>
+    <td>{{appointment.patient.telephone}}</td>
+    <td><button (click)=takePatientFromAppointment(appointment.id)>Принять</button><button>Отменить</button></td>
+  </tr>
+  </tbody>
+</table>
+
