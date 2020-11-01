@@ -20,4 +20,8 @@ export class AppointmentService {
   getAppointment(id: string): Observable<Appointment> {
     return this.httpClient.get<Appointment>(`${this.url}` + '/' + id);
   }
+
+  cancelAppointment(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.url}` + '/' + id);
+  }
 }

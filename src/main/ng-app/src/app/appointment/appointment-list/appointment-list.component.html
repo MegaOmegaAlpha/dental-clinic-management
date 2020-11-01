@@ -13,7 +13,7 @@
     <td>{{appointment.appointmentTime}}</td>
     <td>{{appointment.patient.lastName + " " + appointment.patient.firstName}}</td>
     <td>{{appointment.patient.telephone}}</td>
-    <td><button (click)=takePatientFromAppointment(appointment.id)>Принять</button><button>Отменить</button></td>
+    <td><button (click)=takePatientFromAppointment(appointment.id)>Принять</button><button (click)="cancelAppointment(appointment.id)">Отменить</button></td>
   </tr>
   </tbody>
 </table>

@@ -32,4 +32,11 @@ export class AppointmentListComponent implements OnInit {
     this.router.navigate(["/create-visit", appointmentId])
   }
 
+  public cancelAppointment(appointmentId: number): void {
+    this.appointmentService.cancelAppointment(appointmentId.toString()).subscribe(data => {
+      console.log(data);
+      this.getAppointments();
+    });
+  }
+
 }

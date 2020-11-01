@@ -46,6 +46,10 @@ public class AppointmentService {
                 .collect(Collectors.toList());
     }
 
+    public void cancel(long id) {
+        appointmentRepository.deleteById(id);
+    }
+
     private AppointmentDTO convertEntityToDTO(Appointment entity) {
         return converter.convert(entity, AppointmentDTO.class);
     }
