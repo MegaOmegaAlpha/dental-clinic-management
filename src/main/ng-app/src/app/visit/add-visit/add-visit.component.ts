@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Appointment} from "../../appointment/appointment";
 import {AppointmentService} from "../../appointment/appointment.service";
 import {Visit} from "../visit";
@@ -27,7 +27,8 @@ export class AddVisitComponent implements OnInit {
               private procedureService: ProcedureService,
               private diagnosisService: DiagnosisService,
               private visitService: VisitService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -63,11 +64,16 @@ export class AddVisitComponent implements OnInit {
     this.visitService.createVisit(visit).subscribe(
       data => {
         console.log(data);
+        this.navigateToList();
         //todo: navigation to appointment list
       },
       error => console.log(error)
     );
 
+  }
+
+  private navigateToList(): void {
+    this.router.navigate(["/appointments"]);
   }
 
   private findProcedureById(id: number): Procedure {

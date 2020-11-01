@@ -22,7 +22,7 @@ public class AppointmentController {
 
     @RequestMapping(value = "/appointments", method = RequestMethod.GET)
     public List<AppointmentDTO> getAllAppointments() {
-        return appointmentService.findAll();
+        return appointmentService.findAllNotInVisit();
     }
 
     @RequestMapping(value = "/appointments/{id}", method = RequestMethod.GET)

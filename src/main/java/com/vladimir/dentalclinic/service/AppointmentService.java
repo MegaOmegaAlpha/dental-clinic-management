@@ -39,6 +39,13 @@ public class AppointmentService {
                 .collect(Collectors.toList());
     }
 
+    public List<AppointmentDTO> findAllNotInVisit() {
+        return appointmentRepository.findAllNotInVisit()
+                .stream()
+                .map(this::convertEntityToDTO)
+                .collect(Collectors.toList());
+    }
+
     private AppointmentDTO convertEntityToDTO(Appointment entity) {
         return converter.convert(entity, AppointmentDTO.class);
     }
