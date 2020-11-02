@@ -4,5 +4,6 @@ export class Patient {
   firstName: string;
   lastName: string;
   telephone: string;
+  passport: string;
 
 }

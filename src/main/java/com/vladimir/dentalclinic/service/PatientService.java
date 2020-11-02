@@ -8,6 +8,9 @@ import com.vladimir.dentalclinic.utils.EntityAndDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PatientService {
 
@@ -26,6 +29,13 @@ public class PatientService {
         return convertToDTO(patientRepository.findById(id)
                 .orElseThrow(() -> new NoSuchEntityException(NO_SUCH_APPOINTMENT_MESSAGE + id))
         );
+    }
+
+    public List<PatientDTO> findAll() {
+        return patientRepository.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     private PatientDTO convertToDTO(Patient patient) {

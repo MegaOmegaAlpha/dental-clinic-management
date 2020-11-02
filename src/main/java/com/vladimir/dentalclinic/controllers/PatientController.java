@@ -6,6 +6,8 @@ import com.vladimir.dentalclinic.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -21,5 +23,10 @@ public class PatientController {
     @RequestMapping(value = "/patients/{id}", method = RequestMethod.GET)
     public PatientDTO getById(@PathVariable long id) throws NoSuchEntityException {
         return patientService.findById(id);
+    }
+
+    @RequestMapping(value = "/patients", method = RequestMethod.GET)
+    public List<PatientDTO> getAll() {
+        return patientService.findAll();
     }
 }

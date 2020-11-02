@@ -8,6 +8,8 @@ import {ProcedureService} from "../../procedure/procedure.service";
 import {Diagnosis} from "../../diagnosis/diagnosis";
 import {DiagnosisService} from "../../diagnosis/diagnosis.service";
 import {VisitService} from "../visit.service";
+import {PatientService} from "../../patient/patient.service";
+import {Patient} from "../../patient/patient";
 
 @Component({
   selector: 'app-add-visit',
@@ -33,7 +35,12 @@ export class AddVisitComponent implements OnInit {
 
   ngOnInit(): void {
     let appointmentId = this.route.snapshot.paramMap.get("appointmentId");
-    this.fillAppointment(appointmentId)
+    this.route.queryParams.subscribe(params => {
+      if (params.apptmtId) {
+        this.fillAppointment(params.apptmtId);
+      }
+
+    });
     this.fillProcedures()
     this.fillDiagnosisArray();
   }
@@ -65,7 +72,6 @@ export class AddVisitComponent implements OnInit {
       data => {
         console.log(data);
         this.navigateToList();
-        //todo: navigation to appointment list
       },
       error => console.log(error)
     );

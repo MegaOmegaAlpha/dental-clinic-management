@@ -5,7 +5,7 @@ import {AddVisitComponent} from "./visit/add-visit/add-visit.component";
 
 const routes: Routes = [
   {path: "appointments", component: AppointmentListComponent},
-  {path: "create-visit/:appointmentId", component: AddVisitComponent}
+  {path: "create-visit", component: AddVisitComponent},
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Appointment} from "../appointment";
 import {AppointmentService} from "../appointment.service";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {AddVisitDialogComponent} from "../../visit/add-visit-dialog/add-visit-dialog.component";
 
 @Component({
   selector: 'app-appointment-list',
@@ -13,6 +15,7 @@ export class AppointmentListComponent implements OnInit {
   appointments: Appointment[];
 
   constructor(private appointmentService: AppointmentService,
+              private dialog: MatDialog,
               private router: Router) {
   }
 
@@ -29,7 +32,8 @@ export class AppointmentListComponent implements OnInit {
   public takePatientFromAppointment(appointmentId: number): void {
     /*let appointment = this.appointments.filter(aptmt => aptmt.id === appointmentId);
     let patient = appointment[0].patient;*/
-    this.router.navigate(["/create-visit", appointmentId])
+    //this.router.navigate(["/create-visit"], {queryParams: {apptmtId: appointmentId}});
+    this.dialog.open(AddVisitDialogComponent, {width: '50', height: '50'});
   }
 
   public cancelAppointment(appointmentId: number): void {
