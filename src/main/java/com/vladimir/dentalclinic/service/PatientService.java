@@ -38,6 +38,14 @@ public class PatientService {
                 .collect(Collectors.toList());
     }
 
+    public PatientDTO save(PatientDTO patientDTO) {
+        return convertToDTO(patientRepository.save(convertToEntity(patientDTO)));
+    }
+
+    private Patient convertToEntity(PatientDTO patientDTO) {
+        return converter.convert(patientDTO, Patient.class);
+    }
+
     private PatientDTO convertToDTO(Patient patient) {
         PatientDTO result = converter.convert(patient, PatientDTO.class);
         return result;

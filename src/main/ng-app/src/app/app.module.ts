@@ -10,13 +10,15 @@ import {FormsModule} from "@angular/forms";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import { AddVisitDialogComponent } from './visit/add-visit-dialog/add-visit-dialog.component';
+import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppointmentListComponent,
     AddVisitComponent,
-    AddVisitDialogComponent
+    AddVisitDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

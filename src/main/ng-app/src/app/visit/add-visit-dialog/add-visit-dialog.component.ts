@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PatientService} from "../../patient/patient.service";
 import {Patient} from "../../patient/patient";
+import {Router} from "@angular/router";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-add-visit-dialog',
@@ -11,9 +13,12 @@ export class AddVisitDialogComponent implements OnInit {
 
   patient: Patient = new Patient();
   patients: Patient[];
+  patientId: number;
   isRegistered: boolean;
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService,
+              private dialogRef: MatDialogRef<AddVisitDialogComponent>,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.fillPatients();
@@ -29,6 +34,19 @@ export class AddVisitDialogComponent implements OnInit {
 
   private findPatientById(id: number): Patient {
     return this.patients.filter(patient => patient.id == id)[0];
+  }
+
+  onSubmit(): void {
+    if (this.isRegistered) {
+      this.router.navigate(['create-visit'], {queryParams: {patient: this.patient.id}});
+      this.dialogRef.close();
+    } else {
+      this.patientService.savePatient(this.patient).subscribe(data => {
+        this.router.navigate(['create-visit'], {queryParams: {patient: data.id}});
+        console.log(data);
+        this.dialogRef.close();
+      });
+    }
   }
 
 }

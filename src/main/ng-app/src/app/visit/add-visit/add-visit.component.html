@@ -2,9 +2,9 @@
 <form (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label>Фамилия</label>
-    <input type="text" value="{{appointment.patient.lastName}}" name="lastName" readonly>
+    <input type="text" value="{{patient.lastName}}" name="lastName" readonly>
     <label>Имя</label>
-    <input type="text" value="{{appointment.patient.firstName}}" name="firstName" readonly>
+    <input type="text" value="{{patient.firstName}}" name="firstName" readonly>
     <label>Жалоба</label>
     <input type="text" [(ngModel)]="visit.complaint" name="complaint">
     <label>Состояние</label>

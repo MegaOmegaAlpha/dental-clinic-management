@@ -29,4 +29,9 @@ public class PatientController {
     public List<PatientDTO> getAll() {
         return patientService.findAll();
     }
+
+    @RequestMapping(value = "/patients", method = RequestMethod.POST)
+    public PatientDTO savePatient(@RequestBody PatientDTO patientDTO) {
+        return patientService.save(patientDTO);
+    }
 }

@@ -19,6 +19,7 @@ import {Patient} from "../../patient/patient";
 export class AddVisitComponent implements OnInit {
 
   appointment: Appointment;
+  patient: Patient;
   visit: Visit = new Visit();
   procedures: Procedure[];
   diagnosisArray: Diagnosis[];
@@ -28,6 +29,7 @@ export class AddVisitComponent implements OnInit {
   constructor(private appointmentService: AppointmentService,
               private procedureService: ProcedureService,
               private diagnosisService: DiagnosisService,
+              private patientService: PatientService,
               private visitService: VisitService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -39,10 +41,16 @@ export class AddVisitComponent implements OnInit {
       if (params.apptmtId) {
         this.fillAppointment(params.apptmtId);
       }
-
+      if (params.patient) {
+        this.fillPatient(params.patient);
+      }
     });
     this.fillProcedures()
     this.fillDiagnosisArray();
+  }
+
+  private fillPatient(id: string): void {
+    this.patientService.getPatient(id).subscribe(data => this.patient = data);
   }
 
   private fillProcedures(): void {
@@ -54,7 +62,10 @@ export class AddVisitComponent implements OnInit {
   }
 
   private fillAppointment(id: string): void {
-    this.appointmentService.getAppointment(id).subscribe(data => this.appointment = data);
+    this.appointmentService.getAppointment(id).subscribe(data => {
+      this.appointment = data;
+      this.patient = this.appointment.patient;
+    });
   }
 
   public onSubmit() {

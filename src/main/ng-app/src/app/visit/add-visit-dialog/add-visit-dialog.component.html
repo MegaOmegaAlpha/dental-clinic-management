@@ -1,15 +1,18 @@
 <p>add-visit-dialog works!</p>
 <mat-dialog-content>Выберите пациента или введите данные нового</mat-dialog-content>
-<input type="checkbox" [(ngModel)]="isRegistered">Пациент зарегистрирован<br>
-<select #selectElement (click)="choosePatient(selectElement.value)" [disabled]="!isRegistered">
-  <option selected></option>
-  <option *ngFor="let pat of patients" value="{{pat.id}}">{{pat.lastName}} {{pat.firstName}}</option>
-</select>
-<label>Фамилия</label>
-<input type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName" [disabled]="isRegistered">
-<label>Имя</label>
-<input type="text" [(ngModel)]="patient.firstName"  value="{{patient.firstName}}" name="firstName" [disabled]="isRegistered">
-<label>Паспорт</label>
-<input type="text" [(ngModel)]="patient.passport" name="passport" [disabled]="isRegistered">
-<label>Телефон</label>
-<input type="text" [(ngModel)]="patient.telephone" name="telephone" [disabled]="isRegistered">
+  <input type="checkbox" [(ngModel)]="isRegistered">Пациент зарегистрирован<br>
+  <select #selectElement (click)="choosePatient(selectElement.value)" [disabled]="!isRegistered">
+    <option selected></option>
+    <option *ngFor="let pat of patients" value="{{pat.id}}" [(ngModel)]="patientId">{{pat.lastName}} {{pat.firstName}}</option>
+  </select>
+<form (submit)="onSubmit()">
+  <label>Фамилия</label>
+  <input type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName" [disabled]="isRegistered">
+  <label>Имя</label>
+  <input type="text" [(ngModel)]="patient.firstName"  value="{{patient.firstName}}" name="firstName" [disabled]="isRegistered">
+  <label>Паспорт</label>
+  <input type="text" [(ngModel)]="patient.passport" name="passport" [disabled]="isRegistered">
+  <label>Телефон</label>
+  <input type="text" [(ngModel)]="patient.telephone" name="telephone" [disabled]="isRegistered">
+  <button type="submit">Продолжить</button>
+</form>
