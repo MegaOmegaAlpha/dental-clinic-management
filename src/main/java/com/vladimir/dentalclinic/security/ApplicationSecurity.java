@@ -1,7 +1,9 @@
 package com.vladimir.dentalclinic.security;
 
 import com.vladimir.dentalclinic.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +18,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     private UserService userService;
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
     public ApplicationSecurity(UserService userService, PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
@@ -23,7 +26,12 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().httpBasic().disable();
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .anyRequest().authenticated()
+                .and().httpBasic()
+                .and().cors();
     }
 
     @Override

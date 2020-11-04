@@ -17,7 +17,7 @@ public class User implements UserDetails {
     @Column
     private String password;
 
-    @OneToOne(mappedBy = "userGranted")
+    @OneToOne(mappedBy = "userGranted", fetch = FetchType.LAZY)
     private Dentist dentist;
 
     public String getUserName() {
