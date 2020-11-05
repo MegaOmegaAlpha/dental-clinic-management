@@ -1,23 +1,15 @@
-<p>login works!</p>
-<div class="container col-lg-6">
-  <h1 class="text-center">Login</h1>
-  <div class="card">
-    <div class="card-body">
-      <form class="form-group">
-        <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-        <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
-        <div class="form-group">
-          <label>Логин:</label>
-          <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Логин"
-                 name="username">
-        </div>
-        <div class="form-group">
-          <label>Пароль:</label>
-          <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Пароль"
-                 name="password">
-        </div>
-        <button (click)=handleLogin() class="btn btn-success">Login</button>
-      </form>
-    </div>
-  </div>
+<div class="text-center" id="container">
+  <form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Добро пожаловать</h1>
+    <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+    <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+    <label for="inputLogin" class="sr-only">Логин</label>
+    <input type="email" id="inputLogin" class="form-control" placeholder="Логин" required autofocus name="username"
+           [(ngModel)]="username">
+    <label for="inputPassword" class="sr-only">Пароль</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required name="password"
+           [(ngModel)]="password">
+    <button class="btn btn-lg btn-primary btn-block" (click)="handleLogin()">Войти</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+  </form>
 </div>

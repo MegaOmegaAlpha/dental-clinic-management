@@ -32,8 +32,8 @@ export class AppointmentListComponent implements OnInit {
   public takePatientFromAppointment(appointmentId: number): void {
     /*let appointment = this.appointments.filter(aptmt => aptmt.id === appointmentId);
     let patient = appointment[0].patient;*/
-    //this.router.navigate(["/create-visit"], {queryParams: {apptmtId: appointmentId}});
-    this.dialog.open(AddVisitDialogComponent, {width: '50', height: '50'});
+    this.router.navigate(["/create-visit"], {queryParams: {apptmtId: appointmentId}});
+    //this.dialog.open(AddVisitDialogComponent, {width: '50', height: '50'});
   }
 
   public cancelAppointment(appointmentId: number): void {
