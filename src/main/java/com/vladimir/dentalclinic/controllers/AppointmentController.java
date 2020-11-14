@@ -6,9 +6,10 @@ import com.vladimir.dentalclinic.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.RequestWrapper;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,8 @@ public class AppointmentController {
 
     @RequestMapping(value = "/appointments", method = RequestMethod.GET)
     public List<AppointmentDTO> getAllAppointments() {
-        return appointmentService.findAllNotInVisit();
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return appointmentService.findAllNotInVisitByUser(user.getUsername());
     }
 
     @RequestMapping(value = "/appointments/{id}", method = RequestMethod.GET)

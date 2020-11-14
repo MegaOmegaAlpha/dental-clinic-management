@@ -13,10 +13,12 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Query(
             nativeQuery = true,
             value = "select* from appointment a where a.appointment_id not in (select app.appointment_id " +
-                    "from appointment app join visit v on app.appointment_id = v.appointment_id)",
+                    "from appointment app join visit v on app.appointment_id = v.appointment_id) " +
+                    "and a.dentist_id = ?1",
             countQuery = "select count(*) from appointment a where a.appointment_id not in (select app.appointment_id " +
-                    "from appointment app join visit v on app.appointment_id = v.appointment_id)"
+                    "from appointment app join visit v on app.appointment_id = v.appointment_id) " +
+                    "and a.dentist_id = ?1"
     )
-    List<Appointment> findAllNotInVisit();
+    List<Appointment> findAllNotInVisit(long dentistId);
 
 }
