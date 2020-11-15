@@ -32,7 +32,7 @@ public class PatientService {
     }
 
     public List<PatientDTO> findAll() {
-        return patientRepository.findAll()
+        return patientRepository.findAllByOrderByLastName()
                 .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
