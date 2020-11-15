@@ -50,7 +50,7 @@ public class VisitService {
         visit.setPatient(patientRepository.findById(visitDTO.getPatient().getId()).get());
         visit.setDentist(dentistRepository.findById(visitDTO.getDentist().getId()).get());
         visit.setProcedure(procedureRepository.findById(visitDTO.getProcedure().getId()).get());
-        visit.setDiagnosis(diagnosisRepository.findById(visitDTO.getDiagnosis().getId()).get());
+        visit.setDiagnosis(visitDTO.getDiagnosis() == null ? null : diagnosisRepository.findById(visitDTO.getDiagnosis().getId()).get());
         visit.setVisitDate(new Date(System.currentTimeMillis()));
         return convertToDTO(visitRepository.save(visit));
     }
