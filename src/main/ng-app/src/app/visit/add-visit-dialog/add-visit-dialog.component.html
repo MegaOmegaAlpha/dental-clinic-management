@@ -1,6 +1,7 @@
 <mat-dialog-content>
   <h1>Выберите пациента или введите данные нового</h1>
   <mat-form-field>
+    <mat-label>Пациент</mat-label>
     <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
       <mat-option (click)="choosePatient(pat.id.toString())" *ngFor="let pat of patients"
                   value="{{pat.id}}">{{pat.lastName}} {{pat.firstName}}</mat-option>
