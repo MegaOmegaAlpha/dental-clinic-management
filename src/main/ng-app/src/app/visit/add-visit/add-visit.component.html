@@ -1,22 +1,99 @@
-<p>add-visit works!</p>
-<form (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label>Фамилия</label>
-    <input type="text" value="{{patient.lastName}}" name="lastName" readonly>
-    <label>Имя</label>
-    <input type="text" value="{{patient.firstName}}" name="firstName" readonly>
-    <label>Жалоба</label>
-    <input type="text" [(ngModel)]="visit.complaint" name="complaint">
-    <label>Состояние</label>
-    <input type="text" [(ngModel)]="visit.status" name="status">
-    <label>Процедура</label>
-    <select [(ngModel)]="procedureId" name="procedure">
-      <option *ngFor="let procedure of procedures" value="{{procedure.id}}">{{procedure.name}}</option>
-    </select>
-    <label>Диагноз</label>
-    <select [(ngModel)]="diagnosisId" name="diagnosis">
-      <option *ngFor="let diagnosis of diagnosisArray" value="{{diagnosis.id}}">{{diagnosis.name}}</option>
-    </select>
-    <button type="submit">Завершить</button>
+<div class="main">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Клиника "Десна"</a>
+    <div class="collapse navbar-collapse" id="navbarsExample05">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a mat-button class="nav-link" href="/appointments">Текущие записи <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <button mat-button class="btn-danger">Выйти</button>
+    </div>
+  </nav>
+  <div class="row mt-2 mr-0">
+    <div class="col">
+    </div>
+    <div class="col text-center">
+      <fieldset class="patient-group">
+        <legend>Информация о пациенте</legend>
+        <mat-form-field>
+          <mat-label >Фамилия</mat-label>
+          <input matInput type="text" value="{{patient.lastName}}" name="lastName" readonly>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Имя</mat-label>
+          <input matInput type="text" value="{{patient.firstName}}" name="firstName" readonly>
+        </mat-form-field>
+      </fieldset>
+    </div>
+    <div class="col">
+    </div>
   </div>
-</form>
+  <form ngNativeValidate (ngSubmit)="onSubmit()">
+    <div class="row mt-5 mr-0">
+      <div class="col">
+
+      </div>
+      <div class="col border-right">
+        <mat-form-field class="visit-info-group">
+          <mat-label>Жалоба</mat-label>
+          <textarea rows="10" matInput type="text" [(ngModel)]="visit.complaint" name="complaint" required></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="visit-info-group">
+          <mat-label>Состояние</mat-label>
+          <textarea rows="10" matInput type="text" [(ngModel)]="visit.status" name="status" required></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+    <div class="row mt-5 mr-0">
+      <div class="col">
+
+      </div>
+      <div class="col-6">
+        <mat-form-field class="visit-info-group">
+          <mat-label>Процедура</mat-label>
+          <mat-select [(ngModel)]="procedureId" name="procedure" required>
+            <mat-option *ngFor="let procedure of procedures" value="{{procedure.id}}">{{procedure.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+    <div class="row mt-5 mr-0">
+      <div class="col">
+
+      </div>
+      <div class="col-6">
+        <mat-form-field class="visit-info-group">
+          <mat-label>Диагноз</mat-label>
+          <mat-select [(ngModel)]="diagnosisId" name="diagnosis">
+            <mat-option *ngFor="let diagnosis of diagnosisArray" value="{{diagnosis.id}}">{{diagnosis.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+    <div class="row mt-5 mr-0">
+      <div class="col">
+
+      </div>
+      <div class="col text-center">
+        <button mat-button color="primary" type="submit">Завершить</button>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+
+  </form>
+
+</div>
