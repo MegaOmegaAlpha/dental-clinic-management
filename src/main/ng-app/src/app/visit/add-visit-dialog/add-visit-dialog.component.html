@@ -1,18 +1,58 @@
-<p>add-visit-dialog works!</p>
-<mat-dialog-content>Выберите пациента или введите данные нового</mat-dialog-content>
-  <input type="checkbox" [(ngModel)]="isRegistered">Пациент зарегистрирован<br>
-  <select #selectElement (click)="choosePatient(selectElement.value)" [disabled]="!isRegistered">
-    <option selected></option>
-    <option *ngFor="let pat of patients" value="{{pat.id}}" [(ngModel)]="patientId">{{pat.lastName}} {{pat.firstName}}</option>
-  </select>
-<form (submit)="onSubmit()">
-  <label>Фамилия</label>
-  <input type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName" [disabled]="isRegistered">
-  <label>Имя</label>
-  <input type="text" [(ngModel)]="patient.firstName"  value="{{patient.firstName}}" name="firstName" [disabled]="isRegistered">
-  <label>Паспорт</label>
-  <input type="text" [(ngModel)]="patient.passport" name="passport" [disabled]="isRegistered">
-  <label>Телефон</label>
-  <input type="text" [(ngModel)]="patient.telephone" name="telephone" [disabled]="isRegistered">
-  <button type="submit">Продолжить</button>
-</form>
+<mat-dialog-content>
+  <h1>Выберите пациента или введите данные нового</h1>
+  <mat-form-field>
+    <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
+      <mat-option (click)="choosePatient(pat.id.toString())" *ngFor="let pat of patients"
+                  value="{{pat.id}}">{{pat.lastName}} {{pat.firstName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-checkbox [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
+  <br>
+  <form (submit)="onSubmit()">
+    <div class="row">
+      <div class="col">
+
+      </div>
+      <div class="col-lg-8 text-center content-border">
+        <mat-form-field>
+          <mat-label>Фамилия</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName"
+                 [disabled]="isRegistered">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Имя</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.firstName" value="{{patient.firstName}}" name="firstName"
+                 [disabled]="isRegistered">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Паспорт</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.passport" name="passport" [disabled]="isRegistered">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Телефон</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.telephone" name="telephone" [disabled]="isRegistered">
+        </mat-form-field>
+        <br>
+        <button mat-button type="submit">Продолжить</button>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col text-right">
+      <button class="col-" mat-button (click)="closeDialog()">Отмена</button>
+    </div>
+  </div>
+</mat-dialog-content>

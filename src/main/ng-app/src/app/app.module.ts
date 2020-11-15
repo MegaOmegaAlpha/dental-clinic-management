@@ -8,10 +8,15 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AddVisitComponent} from './visit/add-visit/add-visit.component';
 import {FormsModule} from "@angular/forms";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AddVisitDialogComponent } from './visit/add-visit-dialog/add-visit-dialog.component';
 import { LoginComponent } from './login/login.component';
 import {HttpInterceptorService} from "./authentication/http-interceptor.service";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -28,15 +33,18 @@ import {HttpInterceptorService} from "./authentication/http-interceptor.service"
     MatDialogModule,
     FormsModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule  ],
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule
+  ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    AddVisitDialogComponent
-  ],
+  entryComponents: [AppointmentListComponent]
 })
 export class AppModule {
 }

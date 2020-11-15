@@ -4,7 +4,7 @@
     <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
     <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
     <label for="inputLogin" class="sr-only">Логин</label>
-    <input type="email" id="inputLogin" class="form-control" placeholder="Логин" required autofocus name="username"
+    <input type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus name="username"
            [(ngModel)]="username">
     <label for="inputPassword" class="sr-only">Пароль</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required name="password"

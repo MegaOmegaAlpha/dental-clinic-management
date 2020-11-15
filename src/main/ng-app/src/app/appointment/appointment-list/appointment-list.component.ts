@@ -4,6 +4,8 @@ import {AppointmentService} from "../appointment.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AddVisitDialogComponent} from "../../visit/add-visit-dialog/add-visit-dialog.component";
+import {AuthenticationService} from "../../authentication/authentication.service";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-appointment-list',
@@ -16,6 +18,7 @@ export class AppointmentListComponent implements OnInit {
 
   constructor(private appointmentService: AppointmentService,
               private dialog: MatDialog,
+              private authService: AuthenticationService,
               private router: Router) {
   }
 
@@ -26,14 +29,19 @@ export class AppointmentListComponent implements OnInit {
   private getAppointments(): void {
     this.appointmentService.getAppointments().subscribe(data => {
       this.appointments = data;
+    }, error => {
+      if (error.status == 401) {
+        this.router.navigate(['']);
+      }
     })
   }
 
   public takePatientFromAppointment(appointmentId: number): void {
-    /*let appointment = this.appointments.filter(aptmt => aptmt.id === appointmentId);
-    let patient = appointment[0].patient;*/
     this.router.navigate(["/create-visit"], {queryParams: {apptmtId: appointmentId}});
-    //this.dialog.open(AddVisitDialogComponent, {width: '50', height: '50'});
+  }
+
+  public takePatientWithoutAppointment(): void {
+    this.dialog.open(AddVisitDialogComponent, {width: '50', height: '50', hasBackdrop: true});
   }
 
   public cancelAppointment(appointmentId: number): void {
@@ -43,4 +51,8 @@ export class AppointmentListComponent implements OnInit {
     });
   }
 
+  userLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['']);
+  }
 }
