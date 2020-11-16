@@ -1,0 +1,113 @@
+<div class="main">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Клиника "Десна"</a>
+    <div class="collapse navbar-collapse" id="navbarsExample05">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a mat-button class="nav-link" href="/appointments">Текущие записи</a>
+        </li>
+        <li class="nav-item">
+          <button mat-button class="nav-link">Принять без записи</button>
+        </li>
+        <li class="nav-item active">
+          <a mat-button class="nav-link" href="/create-appointment">Записать пациента</a>
+        </li>
+      </ul>
+      <button mat-button class="btn-danger">Выйти</button>
+    </div>
+  </nav>
+  <div class="row mr-0 mt-2">
+    <div class="col"></div>
+    <div class="col text-center">
+      <mat-checkbox class="mr-2" [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
+      <mat-form-field>
+        <mat-label>Пациент</mat-label>
+        <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
+          <mat-option (click)="choosePatient(pat.id)" *ngFor="let pat of patients"
+                      value="{{pat.id}}">{{pat.lastName}} {{pat.firstName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col"></div>
+  </div>
+  <form ngNativeValidate (ngSubmit)="onSubmit()">
+    <div class="form-row mr-0 mt-5">
+      <div class="col">
+
+      </div>
+      <div class="col border-left-top border-top-top">
+        <mat-form-field class="patient-info-group">
+          <mat-label>Фамилия</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName"
+                 [disabled]="isRegistered" required>
+        </mat-form-field>
+      </div>
+      <div class="col border-top-top border-right-top">
+        <mat-form-field class="patient-info-group">
+          <mat-label>Имя</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.firstName" value="{{patient.firstName}}" name="firstName"
+                 [disabled]="isRegistered" required>
+        </mat-form-field>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+    <div class="form-row mr-0">
+      <div class="col"></div>
+      <div class="col border-bottom-bottom border-left-bottom">
+        <mat-form-field class="patient-info-group">
+          <mat-label>Телефон</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.telephone" value="{{patient.telephone}}" name="telephone"
+                 [disabled]="isRegistered" required>
+        </mat-form-field>
+      </div>
+      <div class="col border-right-bottom border-bottom-bottom">
+        <mat-form-field class="patient-info-group">
+          <mat-label>Паспорт</mat-label>
+          <input matInput type="text" [(ngModel)]="patient.passport" value="{{patient.passport}}" name="passport"
+                 [disabled]="isRegistered" [required]="!isRegistered">
+        </mat-form-field>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="form-row mr-0 mt-1">
+      <div class="col"></div>
+      <div class="col text-center">
+        <mat-form-field class="patient-info-group">
+          <mat-label>Врач</mat-label>
+          <mat-select [(ngModel)]="dentistId" required name="dentist">
+            <mat-option *ngFor="let dentist of dentists"
+                        value="{{dentist.id}}">{{dentist.lastName}} {{dentist.firstName}} - {{dentist.specializationName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="form-row mr-0 mt-1">
+      <div class="col"></div>
+      <div class="col text-center">
+        <mat-form-field>
+          <mat-label>Дата</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="appointmentDate" name="appointmentDate" required/>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col text-center">
+        <mat-form-field>
+          <mat-label>Время</mat-label>
+          <input matInput type="time" min="9:00" max="17:30" [(ngModel)]="appointment.appointmentTime" name="appointmentTime" required/>
+        </mat-form-field>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="form-row mr-0 mt-1">
+      <div class="col"></div>
+      <div class="col text-center">
+        <button mat-button type="submit" color="primary">Записать</button>
+      </div>
+      <div class="col"></div>
+    </div>
+  </form>
+</div>

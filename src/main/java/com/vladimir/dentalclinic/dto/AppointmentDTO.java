@@ -9,7 +9,7 @@ public class AppointmentDTO {
 
     private Date appointmentDate;
 
-    private Time appointmentTime;
+    private String appointmentTime;
 
     private DentistDTO dentist;
 
@@ -31,11 +31,11 @@ public class AppointmentDTO {
         this.appointmentDate = appointmentDate;
     }
 
-    public Time getAppointmentTime() {
+    public String getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(Time appointmentTime) {
+    public void setAppointmentTime(String appointmentTime) {
         this.appointmentTime = appointmentTime;
     }
 

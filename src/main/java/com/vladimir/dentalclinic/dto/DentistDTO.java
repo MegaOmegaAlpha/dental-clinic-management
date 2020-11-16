@@ -14,7 +14,7 @@ public class DentistDTO {
 
     private int cabinetNumber;
 
-    private SpecializationDTO specializationDTO;
+    private String specializationName;
 
     public long getId() {
         return id;
@@ -64,11 +64,11 @@ public class DentistDTO {
         this.cabinetNumber = cabinetNumber;
     }
 
-    public SpecializationDTO getSpecializationDTO() {
-        return specializationDTO;
+    public String getSpecializationName() {
+        return specializationName;
     }
 
-    public void setSpecializationDTO(SpecializationDTO specializationDTO) {
-        this.specializationDTO = specializationDTO;
+    public void setSpecializationName(String specializationName) {
+        this.specializationName = specializationName;
     }
 }

@@ -1,11 +1,11 @@
 import {Patient} from "../patient/patient";
-import {Time} from "@angular/common";
 import {Dentist} from "../dentist/dentist";
 
 export class Appointment {
 
   id: number;
-  appointmentTime: Time;
+  appointmentDate: string;
+  appointmentTime: string;
   patient: Patient;
   dentist: Dentist;
 

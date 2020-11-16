@@ -35,6 +35,11 @@ public class AppointmentController {
         return appointmentService.findById(id);
     }
 
+    @RequestMapping(value = "/appointments", method = RequestMethod.POST)
+    public AppointmentDTO createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
+        return appointmentService.saveAppointment(appointmentDTO);
+    }
+
     @RequestMapping(value = "appointments/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> cancelAppointment(@PathVariable long id) {
         appointmentService.cancel(id);

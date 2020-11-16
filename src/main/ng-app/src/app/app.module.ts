@@ -17,6 +17,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
+import { AppointmentAddComponent } from './appointment/appointment-add/appointment-add.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import {MatSelectModule} from "@angular/material/select";
     AppointmentListComponent,
     AddVisitComponent,
     AddVisitDialogComponent,
-    LoginComponent
+    LoginComponent,
+    AppointmentAddComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import {MatSelectModule} from "@angular/material/select";
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},

@@ -66,8 +66,4 @@ public class VisitService {
         return converter.convert(visit, VisitDTO.class);
     }
 
-    private Visit convertToEntity(VisitDTO visitDTO) {
-        return converter.convert(visitDTO, Visit.class);
-    }
-
 }

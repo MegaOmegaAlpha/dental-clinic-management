@@ -44,6 +44,8 @@ public class DentistService {
     }
 
     private DentistDTO convertEntityToDTO(Dentist entity) {
-        return modelMapper.map(entity, DentistDTO.class);
+        DentistDTO result = modelMapper.map(entity, DentistDTO.class);
+        result.setSpecializationName(entity.getSpecialization().getName());
+        return result;
     }
 }
