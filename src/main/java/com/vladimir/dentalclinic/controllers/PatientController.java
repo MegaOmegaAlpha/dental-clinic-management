@@ -2,6 +2,7 @@ package com.vladimir.dentalclinic.controllers;
 
 import com.vladimir.dentalclinic.dto.PatientDTO;
 import com.vladimir.dentalclinic.exceptions.NoSuchEntityException;
+import com.vladimir.dentalclinic.exceptions.PassportDuplicateException;
 import com.vladimir.dentalclinic.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/patients", method = RequestMethod.POST)
-    public PatientDTO savePatient(@RequestBody PatientDTO patientDTO) {
+    public PatientDTO savePatient(@RequestBody PatientDTO patientDTO) throws PassportDuplicateException {
         return patientService.save(patientDTO);
     }
 }

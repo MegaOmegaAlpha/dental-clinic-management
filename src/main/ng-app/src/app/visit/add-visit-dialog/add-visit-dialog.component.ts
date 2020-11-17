@@ -45,6 +45,17 @@ export class AddVisitDialogComponent implements OnInit {
         this.router.navigate(['create-visit'], {queryParams: {patient: data.id}});
         console.log(data);
         this.dialogRef.close();
+      }, error => {
+        console.log(error);
+        switch (error.status) {
+          case 500:
+            alert("Some problem on the server side");
+            break;
+          case 409:
+            alert("Пользователь с таким паспортом уже существует");
+            document.getElementsByName("passport")[0].click();
+            break;
+        }
       });
     }
   }

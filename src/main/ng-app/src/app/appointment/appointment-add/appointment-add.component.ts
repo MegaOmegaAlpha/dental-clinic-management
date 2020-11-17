@@ -54,12 +54,22 @@ export class AppointmentAddComponent implements OnInit {
   }
 
   onSubmit(): void {
-    
     if (!this.isRegistered) {
       this.patientService.savePatient(this.patient).subscribe(data => {
         console.log(data);
         this.appointment.patient = data;
         this.createAppointment();
+      }, error => {
+        console.log(error);
+        switch (error.status) {
+          case 500:
+            alert("Some problem on the server side");
+            break;
+          case 409:
+            alert("Пользователь с таким паспортом уже существует");
+            document.getElementsByName("passport")[0].click();
+            break;
+        }
       });
     } else {
       this.appointment.patient = this.patient;
