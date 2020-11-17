@@ -28,8 +28,12 @@ export class AddVisitDialogComponent implements OnInit {
     this.patientService.getAllPatients().subscribe(data => this.patients = data);
   }
 
-  choosePatient(patientId: string): void {
-    this.patient = this.findPatientById(Number(patientId));
+  clearPatient(): void {
+    this.patient = new Patient();
+  }
+
+  choosePatient(patientId: number): void {
+    this.patient = this.findPatientById(patientId);
   }
 
   private findPatientById(id: number): Patient {

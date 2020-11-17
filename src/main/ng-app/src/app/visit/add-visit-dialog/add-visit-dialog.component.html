@@ -1,14 +1,18 @@
 <mat-dialog-content>
   <h1>Выберите пациента или введите данные нового</h1>
-  <mat-form-field>
-    <mat-label>Пациент</mat-label>
-    <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
-      <mat-option (click)="choosePatient(pat.id.toString())" *ngFor="let pat of patients"
-                  value="{{pat.id}}">{{pat.lastName}} {{pat.firstName}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-checkbox [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="patient-info-group">
+        <mat-label>Пациент</mat-label>
+        <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
+          <mat-option (click)="choosePatient(pat.id)" *ngFor="let pat of patients"
+                      value="{{pat.id}}">{{pat.lastName}} {{pat.firstName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col"></div>
+  </div>
+  <mat-checkbox (click)="clearPatient()" [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
   <br>
   <form (submit)="onSubmit()">
     <div class="row">
