@@ -45,7 +45,7 @@ export class AppointmentAddComponent implements OnInit {
     this.patient = this.patients.filter(patient => patient.id == id)[0];
   }
 
-  updatePatient(): void {
+  clearPatient(): void {
     this.patient = new Patient();
   }
 

@@ -16,7 +16,7 @@
   <div class="row mr-0 mt-2">
     <div class="col"></div>
     <div class="col text-center">
-      <mat-checkbox class="mr-2" (click)="updatePatient()" [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
+      <mat-checkbox class="mr-2" (click)="clearPatient()" [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
       <mat-form-field>
         <mat-label>Пациент</mat-label>
         <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
