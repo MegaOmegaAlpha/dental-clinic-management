@@ -55,7 +55,15 @@ export class AddVisitComponent implements OnInit {
   }
 
   private fillPatient(id: string): void {
-    this.patientService.getPatient(id).subscribe(data => this.patient = data);
+    this.patientService.getPatient(id).subscribe(data => this.patient = data,
+      error => {
+        console.log(error);
+        switch (error.status) {
+          case 404:
+            alert("Пациента с идентификатором " + id + " не существует");
+            this.router.navigate(["/appointments"]);
+        }
+      });
   }
 
   private fillProcedures(): void {
@@ -70,6 +78,13 @@ export class AddVisitComponent implements OnInit {
     this.appointmentService.getAppointment(id).subscribe(data => {
       this.appointment = data;
       this.patient = this.appointment.patient;
+    }, error => {
+      console.log(error);
+      switch (error.status) {
+        case 404:
+          alert("Записи с идентификатором " + id + " не существует");
+          this.router.navigate(["/appointments"]);
+      }
     });
   }
 

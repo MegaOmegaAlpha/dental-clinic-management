@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AddVisitDialogComponent} from "../../visit/add-visit-dialog/add-visit-dialog.component";
 import {AuthenticationService} from "../../authentication/authentication.service";
-import {MatButtonModule} from "@angular/material/button";
 import {AppointmentEditComponent} from "../appointment-edit/appointment-edit.component";
 
 @Component({
