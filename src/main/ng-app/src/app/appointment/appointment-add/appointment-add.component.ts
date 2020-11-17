@@ -67,7 +67,7 @@ export class AppointmentAddComponent implements OnInit {
             break;
           case 409:
             alert("Пользователь с таким паспортом уже существует");
-            document.getElementsByName("passport")[0].click();
+            document.getElementsByName("passport")[0].focus();
             break;
         }
       });

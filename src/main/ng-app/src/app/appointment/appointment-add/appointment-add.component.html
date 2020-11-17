@@ -6,9 +6,6 @@
         <li class="nav-item">
           <a mat-button class="nav-link" href="/appointments">Текущие записи</a>
         </li>
-        <li class="nav-item">
-          <button mat-button class="nav-link">Принять без записи</button>
-        </li>
         <li class="nav-item active">
           <a mat-button class="nav-link" href="/create-appointment">Записать пациента</a>
         </li>
@@ -57,15 +54,15 @@
       <div class="col"></div>
       <div class="col border-bottom-bottom border-left-bottom">
         <mat-form-field class="patient-info-group">
-          <mat-label>Телефон</mat-label>
-          <input matInput type="text" maxlength="11" [(ngModel)]="patient.telephone" value="{{patient.telephone}}" name="telephone"
+          <mat-label>Телефон в формате 89ХХХХХХХХХ</mat-label>
+          <input matInput type="tel" maxlength="11" pattern="89[0-9]{9}" [(ngModel)]="patient.telephone" value="{{patient.telephone}}" name="telephone"
                  [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
       </div>
       <div class="col border-right-bottom border-bottom-bottom">
         <mat-form-field class="patient-info-group">
-          <mat-label>Паспорт</mat-label>
-          <input matInput type="text" maxlength="10" [(ngModel)]="patient.passport" value="{{patient.passport}}" name="passport"
+          <mat-label>Паспорт (10 цифр)</mat-label>
+          <input matInput type="text" maxlength="10" pattern="[1-9]{1}[0-9]{9}" [(ngModel)]="patient.passport" value="{{patient.passport}}" name="passport"
                  [disabled]="isRegistered" [required]="!isRegistered" autocomplete="off">
         </mat-form-field>
       </div>

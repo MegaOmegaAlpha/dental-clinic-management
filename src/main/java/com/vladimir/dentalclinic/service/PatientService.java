@@ -48,7 +48,7 @@ public class PatientService {
         try {
             savedPatient = convertToDTO(patientRepository.save(convertToEntity(patientDTO)));
         } catch (Exception exception) {
-            Exception rootCause = (Exception) ExceptionUtils.getRootCause(exception);
+            Throwable rootCause = ExceptionUtils.getRootCause(exception);
             if (rootCause instanceof SQLException) {
                 SQLException sqlException = (SQLException) rootCause;
                 if ("23505".equals(sqlException.getSQLState())) {
