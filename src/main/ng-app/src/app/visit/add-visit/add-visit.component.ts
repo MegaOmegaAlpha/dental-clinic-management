@@ -10,6 +10,8 @@ import {DiagnosisService} from "../../diagnosis/diagnosis.service";
 import {VisitService} from "../visit.service";
 import {PatientService} from "../../patient/patient.service";
 import {Patient} from "../../patient/patient";
+import {Dentist} from "../../dentist/dentist";
+import {DentistService} from "../../dentist/dentist.service";
 
 @Component({
   selector: 'app-add-visit',
@@ -25,12 +27,14 @@ export class AddVisitComponent implements OnInit {
   diagnosisArray: Diagnosis[];
   procedureId: number;
   diagnosisId: number;
+  dentist: Dentist;
 
   constructor(private appointmentService: AppointmentService,
               private procedureService: ProcedureService,
               private diagnosisService: DiagnosisService,
               private patientService: PatientService,
               private visitService: VisitService,
+              private dentistService: DentistService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -43,6 +47,7 @@ export class AddVisitComponent implements OnInit {
       }
       if (params.patient) {
         this.fillPatient(params.patient);
+        this.fillDentist();
       }
     });
     this.fillProcedures()
@@ -68,11 +73,16 @@ export class AddVisitComponent implements OnInit {
     });
   }
 
+  private fillDentist(): void {
+    this.dentistService.getCurrentDentist().subscribe(data => this.dentist = data);
+  }
+
   public onSubmit() {
+    debugger;
     this.visit.procedure = this.findProcedureById(this.procedureId);
     this.visit.diagnosis = this.findDiagnosisById(this.diagnosisId);
-    this.visit.patient = this.appointment.patient;
-    this.visit.dentist = this.appointment.dentist;
+    this.visit.patient = this.patient;
+    this.visit.dentist = this.appointment ? this.appointment.dentist : this.dentist;
     this.visit.appointment = this.appointment;
     console.log(this.visit);
     this.saveVisit(this.visit);

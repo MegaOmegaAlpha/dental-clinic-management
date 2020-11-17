@@ -46,7 +46,7 @@ public class VisitService {
         Visit visit = new Visit();
         visit.setComplaint(visitDTO.getComplaint());
         visit.setStatus(visitDTO.getStatus());
-        visit.setAppointment(appointmentRepository.findById(visitDTO.getAppointment().getId()).get());
+        visit.setAppointment(visitDTO.getAppointment() == null ? null : appointmentRepository.findById(visitDTO.getAppointment().getId()).get());
         visit.setPatient(patientRepository.findById(visitDTO.getPatient().getId()).get());
         visit.setDentist(dentistRepository.findById(visitDTO.getDentist().getId()).get());
         visit.setProcedure(procedureRepository.findById(visitDTO.getProcedure().getId()).get());

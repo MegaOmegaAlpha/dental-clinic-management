@@ -15,4 +15,8 @@ export class DentistService {
   getAllDentists(): Observable<Dentist[]> {
     return this.http.get<Dentist[]>(`${this.url}`);
   }
+
+  getCurrentDentist(): Observable<Dentist> {
+    return this.http.get<Dentist>(`${this.url}` + "/current");
+  }
 }

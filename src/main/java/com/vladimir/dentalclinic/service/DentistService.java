@@ -42,6 +42,10 @@ public class DentistService {
         return convertEntityToDTO(savedEntity);
     }
 
+    public DentistDTO findByUsername(String username) {
+        return convertEntityToDTO(dentistRepository.findByUserId(username));
+    }
+
     private DentistDTO convertEntityToDTO(Dentist entity) {
         DentistDTO result = modelMapper.map(entity, DentistDTO.class);
         return result;
