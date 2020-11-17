@@ -16,24 +16,24 @@
 
       </div>
       <div class="col-lg-8 text-center content-border">
-        <mat-form-field>
+        <mat-form-field class="patient-info-group">
           <mat-label>Фамилия</mat-label>
           <input matInput type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName"
                  [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="patient-info-group">
           <mat-label>Имя</mat-label>
           <input matInput type="text" [(ngModel)]="patient.firstName" value="{{patient.firstName}}" name="firstName"
                  [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="patient-info-group">
           <mat-label>Паспорт (10 цифр)</mat-label>
           <input matInput type="text" maxlength="10" pattern="[1-9]{1}[0-9]{9}" [(ngModel)]="patient.passport" name="passport" [disabled]="isRegistered" [required]="!isRegistered" autocomplete="off">
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field class="patient-info-group">
           <mat-label>Телефон в формате 89ХХХХХХХХХ</mat-label>
           <input matInput type="text" maxlength="11" pattern="89[0-9]{9}" [(ngModel)]="patient.telephone" name="telephone" [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>

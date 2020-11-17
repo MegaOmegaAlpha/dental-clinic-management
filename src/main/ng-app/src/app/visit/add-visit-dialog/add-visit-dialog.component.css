@@ -1,4 +1,8 @@
 .content-border {
   border: 2px dotted #8d69ac;
-  border-radius: 34px;
+  border-radius: 21px;
+}
+
+.patient-info-group {
+  width: 100%;
 }
