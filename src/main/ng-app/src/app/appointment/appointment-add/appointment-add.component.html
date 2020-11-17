@@ -39,14 +39,14 @@
         <mat-form-field class="patient-info-group">
           <mat-label>Фамилия</mat-label>
           <input matInput type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName"
-                 [disabled]="isRegistered" required>
+                 [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
       </div>
       <div class="col border-top-top border-right-top">
         <mat-form-field class="patient-info-group">
           <mat-label>Имя</mat-label>
           <input matInput type="text" [(ngModel)]="patient.firstName" value="{{patient.firstName}}" name="firstName"
-                 [disabled]="isRegistered" required>
+                 [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
       </div>
       <div class="col">
@@ -59,14 +59,14 @@
         <mat-form-field class="patient-info-group">
           <mat-label>Телефон</mat-label>
           <input matInput type="text" maxlength="11" [(ngModel)]="patient.telephone" value="{{patient.telephone}}" name="telephone"
-                 [disabled]="isRegistered" required>
+                 [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
       </div>
       <div class="col border-right-bottom border-bottom-bottom">
         <mat-form-field class="patient-info-group">
           <mat-label>Паспорт</mat-label>
           <input matInput type="text" maxlength="10" [(ngModel)]="patient.passport" value="{{patient.passport}}" name="passport"
-                 [disabled]="isRegistered" [required]="!isRegistered">
+                 [disabled]="isRegistered" [required]="!isRegistered" autocomplete="off">
         </mat-form-field>
       </div>
       <div class="col"></div>
