@@ -19,7 +19,7 @@
   <div class="row mr-0 mt-2">
     <div class="col"></div>
     <div class="col text-center">
-      <mat-checkbox class="mr-2" [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
+      <mat-checkbox class="mr-2" (click)="updatePatient()" [(ngModel)]="isRegistered">Пациент зарегистрирован</mat-checkbox>
       <mat-form-field>
         <mat-label>Пациент</mat-label>
         <mat-select [disabled]="!isRegistered" [(ngModel)]="patientId">
@@ -58,14 +58,14 @@
       <div class="col border-bottom-bottom border-left-bottom">
         <mat-form-field class="patient-info-group">
           <mat-label>Телефон</mat-label>
-          <input matInput type="text" [(ngModel)]="patient.telephone" value="{{patient.telephone}}" name="telephone"
+          <input matInput type="text" maxlength="11" [(ngModel)]="patient.telephone" value="{{patient.telephone}}" name="telephone"
                  [disabled]="isRegistered" required>
         </mat-form-field>
       </div>
       <div class="col border-right-bottom border-bottom-bottom">
         <mat-form-field class="patient-info-group">
           <mat-label>Паспорт</mat-label>
-          <input matInput type="text" [(ngModel)]="patient.passport" value="{{patient.passport}}" name="passport"
+          <input matInput type="text" maxlength="10" [(ngModel)]="patient.passport" value="{{patient.passport}}" name="passport"
                  [disabled]="isRegistered" [required]="!isRegistered">
         </mat-form-field>
       </div>

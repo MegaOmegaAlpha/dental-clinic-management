@@ -45,21 +45,37 @@ export class AppointmentAddComponent implements OnInit {
     this.patient = this.patients.filter(patient => patient.id == id)[0];
   }
 
+  updatePatient(): void {
+    this.patient = new Patient();
+  }
+
   private chooseDentist(id: number): Dentist {
     return this.dentists.filter(dentist => dentist.id == id)[0];
   }
 
   onSubmit(): void {
+    
+    if (!this.isRegistered) {
+      this.patientService.savePatient(this.patient).subscribe(data => {
+        console.log(data);
+        this.appointment.patient = data;
+        this.createAppointment();
+      });
+    } else {
+      this.appointment.patient = this.patient;
+      this.createAppointment();
+    }
+  }
+
+  private createAppointment(): void {
     let date = new Date(this.appointmentDate);
     date = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
     this.appointment.appointmentDate = date.toISOString().split("T")[0];
     this.appointment.dentist = this.chooseDentist(this.dentistId);
-    this.appointment.patient = this.patient;
-
     this.appointmentService.createAppointment(this.appointment).subscribe(data => {
       console.log(data);
       this.router.navigate(['appointments']);
-    })
+    });
   }
 
 }
