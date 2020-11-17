@@ -18,13 +18,13 @@
       <div class="col-lg-8 text-center content-border">
         <mat-form-field class="patient-info-group">
           <mat-label>Фамилия</mat-label>
-          <input matInput type="text" [(ngModel)]="patient.lastName" value="{{patient.lastName}}" name="lastName"
+          <input matInput type="text" [(ngModel)]="patient.lastName" name="lastName"
                  [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
         <br>
         <mat-form-field class="patient-info-group">
           <mat-label>Имя</mat-label>
-          <input matInput type="text" [(ngModel)]="patient.firstName" value="{{patient.firstName}}" name="firstName"
+          <input matInput type="text" [(ngModel)]="patient.firstName" name="firstName"
                  [disabled]="isRegistered" required autocomplete="off">
         </mat-form-field>
         <br>
