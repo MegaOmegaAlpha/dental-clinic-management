@@ -1,6 +1,5 @@
 package com.vladimir.dentalclinic.service;
 
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import com.vladimir.dentalclinic.dto.DentistDTO;
 import com.vladimir.dentalclinic.exceptions.NoSuchEntityException;
 import com.vladimir.dentalclinic.model.Dentist;
@@ -45,7 +44,6 @@ public class DentistService {
 
     private DentistDTO convertEntityToDTO(Dentist entity) {
         DentistDTO result = modelMapper.map(entity, DentistDTO.class);
-        result.setSpecializationName(entity.getSpecialization().getName());
         return result;
     }
 }

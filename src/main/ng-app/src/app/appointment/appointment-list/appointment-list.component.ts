@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddVisitDialogComponent} from "../../visit/add-visit-dialog/add-visit-dialog.component";
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {MatButtonModule} from "@angular/material/button";
+import {AppointmentEditComponent} from "../appointment-edit/appointment-edit.component";
 
 @Component({
   selector: 'app-appointment-list',
@@ -44,11 +45,15 @@ export class AppointmentListComponent implements OnInit {
     this.dialog.open(AddVisitDialogComponent, {width: '50', height: '50', hasBackdrop: true});
   }
 
-  public cancelAppointment(appointmentId: number): void {
-    this.appointmentService.cancelAppointment(appointmentId.toString()).subscribe(data => {
-      console.log(data);
+  public updateAppointment(appointmentId: number): void {
+    let dialogRef = this.dialog.open(AppointmentEditComponent, {hasBackdrop: true, data: {appointmentData: this.findAppointmentById(appointmentId)}});
+    dialogRef.afterClosed().subscribe(result => {
       this.getAppointments();
     });
+  }
+
+  private findAppointmentById(id: number): Appointment {
+    return this.appointments.filter(appointment => appointment.id == id)[0];
   }
 
   userLogout(): void {

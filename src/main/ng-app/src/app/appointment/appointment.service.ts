@@ -25,7 +25,11 @@ export class AppointmentService {
     return this.httpClient.post<Appointment>(`${this.url}`, appointment);
   }
 
-  cancelAppointment(id: string): Observable<any> {
+  cancelAppointment(id: number): Observable<any> {
     return this.httpClient.delete(`${this.url}` + '/' + id);
+  }
+
+  updateAppointment(appointment: Appointment): Observable<Appointment> {
+    return this.httpClient.put<Appointment>(`${this.url}`, appointment);
   }
 }

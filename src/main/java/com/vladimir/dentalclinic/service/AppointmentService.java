@@ -59,10 +59,17 @@ public class AppointmentService {
     }
 
     public AppointmentDTO saveAppointment(AppointmentDTO appointmentDTO) {
-        Appointment appointment = new Appointment();
+        Appointment appointment = convertDTOToEntity(appointmentDTO);
+        return convertEntityToDTO(appointmentRepository.save(appointment));
+    }
+
+    public AppointmentDTO updateAppointment(AppointmentDTO appointmentDTO) throws NoSuchEntityException {
+        Appointment appointment = appointmentRepository.findById(appointmentDTO.getId())
+                .orElseThrow(() -> new NoSuchEntityException(NO_SUCH_APPOINTMENT_MESSAGE + appointmentDTO.getId()));
         appointment.setAppointmentDate(appointmentDTO.getAppointmentDate());
-        appointment.setAppointmentTime(Time.valueOf(appointmentDTO.getAppointmentTime() + ":00"));
-        appointment.setPatient(patientRepository.findById(appointmentDTO.getPatient().getId()).get());
+        appointment.setAppointmentTime(isTimeFormatOk(appointmentDTO.getAppointmentTime())
+                ? Time.valueOf(appointmentDTO.getAppointmentTime())
+                : Time.valueOf(appointmentDTO.getAppointmentTime() + ":00"));
         appointment.setDentist(dentistRepository.findById(appointmentDTO.getDentist().getId()).get());
         return convertEntityToDTO(appointmentRepository.save(appointment));
     }
@@ -73,6 +80,20 @@ public class AppointmentService {
 
     private AppointmentDTO convertEntityToDTO(Appointment entity) {
         return converter.convert(entity, AppointmentDTO.class);
+    }
+
+    private boolean isTimeFormatOk(String timeInString) {
+        return timeInString.split(":").length == 3;
+    }
+
+    private Appointment convertDTOToEntity(AppointmentDTO appointmentDTO) {
+        Appointment appointment = new Appointment();
+        appointment.setId(appointmentDTO.getId());
+        appointment.setAppointmentDate(appointmentDTO.getAppointmentDate());
+        appointment.setAppointmentTime(Time.valueOf(appointmentDTO.getAppointmentTime() + ":00"));
+        appointment.setPatient(patientRepository.findById(appointmentDTO.getPatient().getId()).get());
+        appointment.setDentist(dentistRepository.findById(appointmentDTO.getDentist().getId()).get());
+        return appointment;
     }
 
 }

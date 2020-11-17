@@ -40,6 +40,11 @@ public class AppointmentController {
         return appointmentService.saveAppointment(appointmentDTO);
     }
 
+    @RequestMapping(value = "/appointments", method = RequestMethod.PUT)
+    public AppointmentDTO updateAppointment(@RequestBody AppointmentDTO appointmentDTO) throws NoSuchEntityException {
+        return appointmentService.updateAppointment(appointmentDTO);
+    }
+
     @RequestMapping(value = "appointments/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> cancelAppointment(@PathVariable long id) {
         appointmentService.cancel(id);

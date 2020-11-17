@@ -1,0 +1,61 @@
+<mat-dialog-content>
+  <h1>Редактировать запись</h1>
+  <form ngNativeValidate (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Фамилия</mat-label>
+          <input type="text" matInput value="{{appointment.patient.lastName}}" name="patientFirstName" disabled>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Имя</mat-label>
+          <input type="text" matInput value="{{appointment.patient.firstName}}" name="patientLastName" disabled>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col text-center">
+        <mat-form-field>
+          <mat-label>Дата</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="appointment.appointmentDate" name="appointmentDate" required/>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col text-center">
+        <mat-form-field>
+          <mat-label>Время</mat-label>
+          <input matInput type="time" min="9:00" max="17:30" [(ngModel)]="appointment.appointmentTime"
+                  name="appointmentTime" required/>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col text-center">
+        <mat-form-field class="patient-info-group">
+          <mat-label>Врач</mat-label>
+          <mat-select [(ngModel)]="dentistId" required name="dentist" [disabled]="isCurrentDoctorSelected" #select="ngModel">
+            <mat-option *ngFor="let dentist of dentists"
+                        value="{{dentist.id}}">{{dentist.lastName}} {{dentist.firstName}} - {{dentist.specializationName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="select.hasError('required') || (f.submitted && select.invalid)">Пожалуйста, выберите доктора</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <mat-checkbox [(ngModel)]="isCurrentDoctorSelected" name="isCurrentDoctorSelected">Текущий врач</mat-checkbox>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col text-left">
+        <button mat-button color="primary" type="submit">Сохранить</button>
+      </div>
+      <div class="col text-right">
+        <button mat-button color="warn" (click)="cancelAppointment()">Отменить запись</button>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>

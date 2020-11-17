@@ -37,7 +37,7 @@
             <td>{{appointment.patient.telephone}}</td>
             <td>
               <button mat-button class="btn-success" (click)=takePatientFromAppointment(appointment.id)>Принять</button>
-              <button mat-button class="btn-warning" (click)="cancelAppointment(appointment.id)">Отменить</button>
+              <button mat-button class="btn-warning" (click)="updateAppointment(appointment.id)">Изменить</button>
             </td>
           </tr>
           </tbody>

@@ -20,6 +20,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { AppointmentAddComponent } from './appointment/appointment-add/appointment-add.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { AppointmentEditComponent } from './appointment/appointment-edit/appointment-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     AddVisitComponent,
     AddVisitDialogComponent,
     LoginComponent,
-    AppointmentAddComponent
+    AppointmentAddComponent,
+    AppointmentEditComponent
   ],
   imports: [
     BrowserModule,
