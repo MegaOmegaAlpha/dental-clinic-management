@@ -40,6 +40,7 @@ export class AddVisitComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let appointmentId = this.route.snapshot.paramMap.get("appointmentId");
     this.route.queryParams.subscribe(params => {
       if (params.apptmtId) {
         this.fillAppointment(params.apptmtId);
@@ -61,7 +62,6 @@ export class AddVisitComponent implements OnInit {
           case 404:
             alert("Пациента с идентификатором " + id + " не существует");
             this.router.navigate(["/appointments"]);
-            break;
         }
       });
   }
@@ -84,7 +84,6 @@ export class AddVisitComponent implements OnInit {
         case 404:
           alert("Записи с идентификатором " + id + " не существует");
           this.router.navigate(["/appointments"]);
-          break;
       }
     });
   }
